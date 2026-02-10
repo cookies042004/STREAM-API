@@ -1,38 +1,37 @@
 /**
- * STREAM-API UC1 - Ability to Create a Stream and Iterate to show each
- * element of the stream.
+ * STREAM-API UC2 - Ability to Transform Each Element to Double
+ * and Store the Result.
  *
- * In this we have created stream using different Sources and stream is created.
- * Also, we have implemented forEach() method on the stream.
+ * In this program:
+ * 1. A Stream is created from a List using stream().
+ * 2. The map() intermediate operation is used to transform
+ *    each element by doubling its value.
+ * 3. The forEach() terminal operation is used to display
+ *    transformed elements directly.
+ * 4. The collect() terminal operation is used to store the
+ *    transformed elements into a new List.
  *
  * @Developer
- * @version2.1
-* */
+ * @version2.2
+ */
 
 import java.util.*;
 import java.util.stream.*;
 
 public class StreamAPI {
     public static void main(String[] args) {
-        List<String> names = Arrays.asList("Akhil", "Rahul", "Priya", "Sneha");
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
 
-        // creating stream and iterating it.
-        names.stream().forEach(name -> System.out.println(name));
+        // no storing directly processing.
+        numbers.stream()
+                .map(x -> x * 2)
+                .forEach(System.out::println);
 
-        // Using Method Reference.
-        names.stream().forEach(System.out::println);
-        // System.out::println is a method reference
-        // It does the same as name -> System.out.println(name)
+        // storing of elements.
+        List<Integer> doubled = numbers.stream()
+                .map(x -> x * 2)
+                .collect(Collectors.toList());
 
-        // Using different Sources and applying stream
-        String[] arr = {"C++", "Java", "Python"};
-        Arrays.stream(arr).forEach(System.out::println);
-
-        // Using Stream.of()
-        Stream.of(10, 20, 30, 40).forEach(System.out::println);
-
-        // Using Set
-        Set<Integer> numbers = new HashSet<>(Arrays.asList(1,2,3,4));
-        numbers.stream().forEach(System.out::println);
+        System.out.println(doubled);
     }
 }
