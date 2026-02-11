@@ -1,14 +1,15 @@
 /**
- * STREAM-API UC8 - Ability to Check Whether All Numbers or
- * At Least One Number is Even in the Stream.
+ * STREAM-API UC9 - Ability to Sort Numbers in Ascending Order Using sorted().
  *
  * In this program:
  * 1. A Stream is created from a List using stream().
- * 2. allMatch() checks if all elements satisfy the condition.
- * 3. anyMatch() checks if at least one element satisfies the condition.
+ * 2. The sorted() intermediate operation sorts elements
+ *    in natural (ascending) order.
+ * 3. The collect() terminal operation stores the result
+ *    into a new List.
  *
  * @Developer
- * @version 2.8
+ * @version 2.9
  */
 
 import java.util.*;
@@ -17,15 +18,12 @@ import java.util.stream.*;
 public class StreamAPI {
     public static void main(String[] args) {
 
-        List<Integer> numbers = Arrays.asList(2, 4, 6, 7, 8);
+        List<Integer> numbers = Arrays.asList(5, 2, 8, 1, 4);
 
-        boolean allEven = numbers.stream()
-                .allMatch(x -> x % 2 == 0);
+        List<Integer> sortedNumbers = numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
 
-        boolean anyEven = numbers.stream()
-                .anyMatch(x -> x % 2 == 0);
-
-        System.out.println("Are all numbers even? " + allEven);
-        System.out.println("Is at least one number even? " + anyEven);
+        System.out.println("Ascending Order: " + sortedNumbers);
     }
 }
