@@ -5,7 +5,7 @@ Each use case focuses on a specific Stream operation to build strong foundationa
 
 ---
 
-## 🚀 Technologies Used
+## Technologies Used
 
 - Java 8+
 - Stream API
