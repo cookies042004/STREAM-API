@@ -1,31 +1,31 @@
 /**
- * STREAM-API UC7 - Ability to find the sum and the average in the number stream.
+ * STREAM-API UC8 - Ability to Check Whether All Numbers or
+ * At Least One Number is Even in the Stream.
  *
- In this program:
- *  1. A Stream is created from a List using stream().
- *  2. mapToInt() converts Stream<Integer> to IntStream.
- *  3. sum() calculates total of elements.
- *  4. average() calculates average value.
+ * In this program:
+ * 1. A Stream is created from a List using stream().
+ * 2. allMatch() checks if all elements satisfy the condition.
+ * 3. anyMatch() checks if at least one element satisfies the condition.
  *
  * @Developer
- * @version: 2.7
+ * @version 2.8
  */
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.OptionalDouble;
+import java.util.*;
+import java.util.stream.*;
 
 public class StreamAPI {
     public static void main(String[] args) {
 
-        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 8, 10);
+        List<Integer> numbers = Arrays.asList(2, 4, 6, 7, 8);
 
-        int sum = numbers.stream().mapToInt(Integer::intValue).sum();
+        boolean allEven = numbers.stream()
+                .allMatch(x -> x % 2 == 0);
 
-        OptionalDouble average = numbers.stream().mapToInt(Integer::intValue).average();
+        boolean anyEven = numbers.stream()
+                .anyMatch(x -> x % 2 == 0);
 
-        System.out.println("Sum: " + sum);
-        average.ifPresent(avg -> System.out.println("Average: " + avg));
+        System.out.println("Are all numbers even? " + allEven);
+        System.out.println("Is at least one number even? " + anyEven);
     }
 }
