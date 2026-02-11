@@ -1,35 +1,31 @@
 /**
- * STREAM-API UC6 - Ability to find min and max even number in the number stream.
+ * STREAM-API UC7 - Ability to find the sum and the average in the number stream.
  *
  In this program:
- * 1. A Stream is created from a List using stream().
- * 2. The filter() intermediate operation is used to select
- *    only even numbers.
- * 3. The findFirst() terminal operation is used to retrieve
- *    the first matching element from the stream.
+ *  1. A Stream is created from a List using stream().
+ *  2. mapToInt() converts Stream<Integer> to IntStream.
+ *  3. sum() calculates total of elements.
+ *  4. average() calculates average value.
  *
  * @Developer
- * @version: 2.6
+ * @version: 2.7
  */
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalDouble;
 
 public class StreamAPI {
     public static void main(String[] args) {
 
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 8, 10);
 
-        Optional<Integer> minEven = numbers.stream()
-                .filter(x -> x % 2 == 0)
-                .min(Integer::compareTo);
+        int sum = numbers.stream().mapToInt(Integer::intValue).sum();
 
-        Optional<Integer> maxEven = numbers.stream()
-                .filter(x -> x % 2 == 0)
-                .max(Integer::compareTo);
+        OptionalDouble average = numbers.stream().mapToInt(Integer::intValue).average();
 
-        minEven.ifPresent(x -> System.out.println("Minimum Even: " + x));
-        maxEven.ifPresent(x -> System.out.println("Maximum Even: " + x));
+        System.out.println("Sum: " + sum);
+        average.ifPresent(avg -> System.out.println("Average: " + avg));
     }
 }
